@@ -7,6 +7,7 @@ import { Rental } from '../shared/rental.model';
   templateUrl: './rental-list.component.html',
   styleUrls: ['./rental-list.component.scss']
 })
+
 export class RentalListComponent implements OnInit {
 
   rentals: Rental[] = [];
@@ -14,19 +15,19 @@ export class RentalListComponent implements OnInit {
   constructor( private rentalService: RentalService ) { }
 
   ngOnInit() {
+
     const rentalObservable = this.rentalService.getRentals();
 
     rentalObservable.subscribe(
      (data: Rental[]) => {
         this.rentals = data;
      },
+
      (err)=> {
 
      },
      ()=> {
 
-     });
-      
+     });    
   }
-
 }
