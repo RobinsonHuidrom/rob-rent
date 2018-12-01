@@ -1,3 +1,4 @@
+
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -10,7 +11,7 @@ const userRoutes = require('./routes/users');
 
 mongoose.connect(config.DB_URI,{ useNewUrlParser: true }).then( ()=> {
     const fakeDb = new FakeDb();
-    fakeDb.seedDb();
+   // fakeDb.seedDb();
 });
 
 const app = express();

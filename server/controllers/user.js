@@ -9,7 +9,7 @@ exports.auth = function(req,res) {
 
     if(!email || !password)
     {
-        return res.status(422).send({ errors: [{title:'Data missing!', details: 'Provide email and password!'}] });
+        return res.status(422).send({ errors: [{title:'Data missing!', detail: 'Provide email and password!'}] });
     } 
 
     User.findOne({email}, function(err, user) {
@@ -18,7 +18,7 @@ exports.auth = function(req,res) {
         }
 
         if(!user) {
-            return res.status(422).send({ errors: [{title:'Invalid User!', details: 'User does not Exist!' }] });
+            return res.status(422).send({ errors: [{title:'Invalid User!', detail: 'User does not Exist!' }] });
         }
 
         if(user.hasSamePassword(password)) {
@@ -26,10 +26,11 @@ exports.auth = function(req,res) {
                 userId: user.id,
                 username : user.username
             }, config.SECRET, {expiresIn:'1hr'});
+            
           return res.json(token);
         }
         else {
-            return  res.status(422).send({ errors: [{title:'Wrong DATA!', details: 'Wrong email or password!' }] });
+            return  res.status(422).send({ errors: [{title:'Wrong DATA!', detail: 'Wrong email or password!' }] });
         }
 
     });
@@ -41,12 +42,12 @@ exports.register = function(req,res) {
 
     if(!email || !password)
     {
-        return res.status(422).send({ errors: [{title:'Data missing!', details: 'Provide email and password!'}] });
+        return res.status(422).send({ errors: [{title:'Data missing!', detail: 'Provide email and password!'}] });
     } 
     
     if(password !== passwordConfirmation)
     {
-        return res.status(422).send({ errors: [{title:'Password not Matching!', details: 'Re-type Password Again!'}] });
+        return res.status(422).send({ errors: [{title:'Password not Matching!', detail: 'Re-type Password Again!'}] });
     }
     
     User.findOne({email}, function(err, existingUser) {
@@ -107,5 +108,5 @@ function parseToken(token) {
 }
 
 function notAuthorized(res) {
-    return res.status(401).send({ errors: [{title:'Not Authorized!', details: 'You need to login-In!'}] });
+    return res.status(401).send({ errors: [{title:'Not Authorized!', detail: 'You need to login-In!'}] });
 }

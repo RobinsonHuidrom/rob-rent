@@ -24,7 +24,7 @@
               <span><i class="fa fa-bed"></i> {{rental.bedrooms + 2}} beds</span>
             </div>
             <p class="rental-description">
-              {{rental.description | upper }}
+              {{rental.description | uppercase }}
             </p>
             <hr>
             <div class="rental-assets">
@@ -44,7 +44,9 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4"> BOOKING</div>
+        <div class="col-md-4"> 
+          <bwm-rental-detail-booking [price]="rental.dailyRate"> </bwm-rental-detail-booking>
+        </div>
       </div>
     </div>
   </section>

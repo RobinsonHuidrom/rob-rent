@@ -1,3 +1,4 @@
+
 const Rental = require('./models/rental');
 const User = require('./models/user');
 
